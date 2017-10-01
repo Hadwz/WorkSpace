@@ -8,4 +8,4 @@ Git tracks changes
 
 Git tracks change of files
 
-createing a new branch is quick
+creating a new branch is quick
