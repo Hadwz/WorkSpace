@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-09-30 23:08:22
+ * @version $Id$
+ */
+	body{
+		
+		background: url('../img/sky.jpg') no-repeat;
+		background-size: 100%;
+
+	}
+	
+	.search-frame{
+		width:80%;
+		/*background-color: lightblue;*/
+		margin:5rem auto;
+		margin-bottom: 1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.search-input{	
+
+		margin:1rem auto;
+		text-align: center;
+
+	}
+
+	.search-input h1{
+		
+		color:white;
+		margin-bottom: 2rem;
+
+	}
+
+	.weather-info-frame{
+		
+		width:80%;
+		margin:0 auto;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		display: none;
+		background-color: none;
+
+		
+
+	}
+
+	.city-info{
+		text-align: center;
+		display: flex;
+		justify-content: space-between;
+		height:350px;
+	/*	margin:0 auto;*/
+		margin:20px 0;
+	}
+
+	.city-day{
+		
+		background-color: white;
+		width:50%;
+
+	}
+
+	.city-night{
+	
+		background-color: grey;
+		width:50%;
+
+	}
+
+	#city-night-ul li{
+		
+		background-color: grey;
+
+	}
+
+	.city-name{
+		
+		color: white;
+
+	}
+
+
