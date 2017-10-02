@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-09-30 23:08:22
+ * @version $Id$
+ */
+	body{
+		
+		background: url('../img/sky.jpg') no-repeat;
+		background-size: 100%;
+
+	}
+	
+	#weather-container{
+
+		text-align: center;
+		margin-top:3rem;
+		color: white;
+	}
+	
+	.weather-info{
+
+		margin-top:3rem;
+
+	}
+
+	.weather-night{
+		
+		background-color: grey;
+		color:black;
+
+	}
+
+	.weather-day{
+
+		background-color: white;
+		color: black;
+
+	}
+
+	.search-area{
+
+		margin-top:2rem;
+		margin-bottom: 1rem;
+
+	}
+
+
