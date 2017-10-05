@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors Your Name (you@example.org)
+ * @date    2017-09-29 10:59:22
+ * @version $Id$
+ */
+
+	.wrap{
+		
+		width:95%;
+		height:700px;
+		margin:0 auto;
+		background-color: lightblue;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+
+	}
+
+	#canvas{
+		
+		border:1px solid black;
+		background-image: url('../images/bg.png');
+
+	}
+
+	
