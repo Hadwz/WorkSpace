@@ -429,23 +429,9 @@
  				//控制列表隐藏与否
  				controlList:function () {
 
- 					if(!this.showList){
+ 					this.showList = !this.showList;
 
- 						this.showList = true;
-
- 						log(this.showList,"1")
-
- 						return;
-
-	 				}
-	 				else{
-
-	 					this.showList = false;
-
-	 					 log(this.showList,"0");
-
-
- 					}
+ 					log(this.showList)
 
  				},
 

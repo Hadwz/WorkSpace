@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Examples</title>
+<title>Adplayer</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
 <link href="" rel="stylesheet">
+<link rel="shortcut icon" href="img/播放器.png">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
@@ -17,17 +18,21 @@
 <body>
    <section class="container-fluid">
 	<div class="row">
+		<!-- 播放器主界面 -->
 		<div class="col-md-4 col-md-offset-4" id="player-wrap">
+
 			<audio id="audio" src="source/まじ娘 - アイロニ.mp3">
 				您的浏览器不支持该播放器
 			</audio>	
+
 			<!-- 歌曲封面 -->
 			<div class="player-cover">
 				<img :src="song[songIndex]['img']" alt="歌曲封面" class="img-rounded">
 				<div id="start-btn" v-on:click="playEvent">
 					<img id="start-img" v-bind:src="btnImg.start[btnIndex]">
-				</div>
+				</div>	
 			</div>
+
 			<!-- 控制面板 -->
 			<div class="player-panel">
 				<section class="panel-top">
@@ -55,9 +60,11 @@
 				</section>
 
 				<!-- 歌曲列表 -->
-				<ul class="list-group song-list" v-show="list_show">
-					<li class="list-group-item" v-for="( item, index) in song" @click="liEvent(index)">{{index+1}} - {{item.name}}<span class="pull-right"> {{item.singer}}</span></li>
-				</ul>
+				<transition name="fade">	
+					<ul class="list-group song-list" v-show="list_show">
+						<li class="list-group-item" v-for="( item, index) in song" @click="liEvent(index)">{{index+1}} - {{item.name}}<span class="pull-right"> {{item.singer}}</span></li>
+					</ul>
+				</transition>
 			</div>
 		</div>
 	</div>	

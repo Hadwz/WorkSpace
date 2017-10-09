@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	<div id="test">
+		<my-div></my-div>	
+	</div>
+	<script type="text/javascript">
+
+		let log = console.log.bind(console);
+
+		Vue.component('my-div',{
+
+			template: '<div>A custom component!</div>'
+
+		});
+
+		let vm = new Vue({
+
+			el: '#test',
+
+			data:{
+
+				docState:['edited','saved','editing'],
+
+			},
+
+			
+
+		});
+
+	</script>
+</body>
+</html>
