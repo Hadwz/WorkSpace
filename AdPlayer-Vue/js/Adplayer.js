@@ -20,7 +20,7 @@
 
  				song:[{
 
-					'name':'アイロニ',
+					name:'アイロニ',
 
 					'singer':'まじ娘',
 
@@ -32,7 +32,7 @@
 
 					{
 
-					'name':'光るなら',
+					name:'光るなら',
 
 					'singer':'Goose House',
 
@@ -42,14 +42,50 @@
 
 					},
 
+					// {
+
+					// 	name:'ステレオポニ',
+
+					// 	'singer':'ツキアカリのミチシルベ',
+
+					// 	'src':"ステレオポニー - ツキアカリのミチシルベ (TV size).mp3",
+
+					// 	'img': 'img/黑之契约者.jpg',
+
+					// },
+
+					{
+						name:'晓之车',
+
+						'singer':'南里侑香',
+
+						'src':"source/FictionJunction - 暁の車.mp3",
+
+						'img': 'img/晓之车.jpg',
+
+					},
+
+					{
+
+						name:'overlap',
+
+						'singer':'kimeru',
+
+						'src':"source/kimeru - Overlap.mp3",
+
+						'img': 'img/游戏王.jpg',
+
+					},
+
+
+
+
 
  				],
 
  				btnImg:{
 
  					start:['img/播放.svg','img/暂停.svg'],
-
- 					volume:['img/音量.svg','img/静音.svg'],
 
  				},
 
@@ -78,6 +114,10 @@
  				flag:true,
 
  				songAlltimer:``,
+
+ 				showList:false,
+
+ 				liActive:'',
 
 
  			},
@@ -155,6 +195,12 @@
 
  				},
 
+ 				list_show:function () {
+
+ 					return this.showList;
+
+ 				},
+
 
  			},//computed end
 
@@ -193,7 +239,28 @@
 
  					that.audio.play();
 
+ 					that.liEvent(that.songIndex);
+
  					that.playProgress();
+
+ 				},
+
+ 				//切换歌曲
+ 				switchSong:function (index) {
+
+ 					let that = this;
+
+ 					that.playWidth = 0;			
+
+					that.songIndex =index;
+
+					that.btnIndex=0;
+
+					that.audio.src=that.song[that.songIndex]['src'];
+
+					that.playSong();
+
+					log('切换歌曲')
 
  				},
 
@@ -257,7 +324,7 @@
 
 						if(this.songIndex+1 === this.song.length){
 
-							alert('已经是最后一首了');
+							this.switchSong(0)
 
 							return;
 
@@ -359,6 +426,46 @@
 
  				},
 
+ 				//控制列表隐藏与否
+ 				controlList:function () {
+
+ 					if(!this.showList){
+
+ 						this.showList = true;
+
+ 						log(this.showList,"1")
+
+ 						return;
+
+	 				}
+	 				else{
+
+	 					this.showList = false;
+
+	 					 log(this.showList,"0");
+
+
+ 					}
+
+ 				},
+
+ 				//点击列表播放事件
+ 				liEvent:function (index) {
+
+ 					log('liEvent')
+
+ 					$('.song-list>li').eq(index).addClass('active').siblings().removeClass('active');
+
+ 					if(index != this.songIndex) {
+
+ 						this.switchSong(index);
+
+ 					}
+
+
+ 				}
+ 				
+
 
  			},  //methods end
 
@@ -373,10 +480,5 @@
 
  	}
 
- 	let createAudio = function () {
-
-		
-
- 	};
 
  	window.onload = init;
