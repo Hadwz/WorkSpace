@@ -6,9 +6,10 @@
  */
 
 
-	let log = console.log.bind(console);
 
-	/**
+let weather = window.weather;
+
+/**
 	 * [ajaxRequest description]
 	 * ajax请求
 	 * 成功后展示天气信息
@@ -16,94 +17,94 @@
 	 * @param  {[type]} input [description]
 	 * @return {[type]}       [description]
 	 */
-	function ajaxRequest(input) {
+function ajaxRequest(input) {
 
-		let city = input;
+	let city = input;
 
-		let url = "http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&city=" + city + "&day=0&dfc=3";
+	let url = "http://php.weather.sina.com.cn/iframe/index/w_cl.php?code=js&city=" + city + "&day=0&dfc=3";
 
-		let request = $.ajax({
+	let request = $.ajax({
 
-			url: url,
+		url: url,
 
-			dataType: 'script',
+		dataType: 'script',
 
-			scriptCharset:'gbk',
+		scriptCharset:'gbk',
 
-			success: function(data) {
+		success: function() {
 
-				try {
+			try {
 				
-					cityData = window.SWther.w[`${city}`][0];   //城市天气数据
+				let cityData = window.SWther.w[`${city}`][0];   //城市天气数据
 
-					cityName = Object.keys(window.SWther.w).toString();  //获得城市名字
+				let cityName = Object.keys(window.SWther.w).toString();  //获得城市名字
 
-					onBack(cityData,cityName);
+				onBack(cityData,cityName);
 
-					weather.showInfo();
+				weather.showInfo();
 
-					weather.displayControl(true);
+				weather.displayControl(true);
 
 				
-				} catch(e) {
-					// statements
-					
-					console.log(e);
-
-					weather.displayControl(false);
+			} catch(e) {
+				// statements
 				
+				console.log(e);
 
-					weather.warningInfo(input);
+				weather.displayControl(false);
+			
 
-				}
+				weather.warningInfo(input);
 
-			},
-
-			error: function(status) {
-
-				alert('失败了',status);
 			}
 
+		},
 
-		}).always(function (){
+		error: function(status) {
 
-				$('.weather-info-frame').slideDown('slow');
+			alert('失败了',status);
+		}
 
-		});
 
-	}
+	}).always(function (){
 
-	/**
+		$('.weather-info-frame').slideDown('slow');
+
+	});
+
+}
+
+/**
  	 * [inputJudge description]
  	 * @param  {[type]} str [description]
  	 * @return {[type]}     [description]
  	 * 判断用户输入的内容是否为空
  	 * 或者是否为中文
  	 */
- 	function inputJudge(str) {
+function inputJudge(str) {
   
- 		let reg = /^[\u4e00-\u9fa5]{0,}$/;  
+	let reg = /^[\u4e00-\u9fa5]{0,}$/;  
 
-		if( !reg.test(str) ) { 
+	if( !reg.test(str) ) { 
 
-			alert('请输入中文!');
+		alert('请输入中文!');
 
-			return false; 
-
-		} 
-		else if( str === "") {
-
-		    alert("输入内容不能为空！");
-
-		    return;
-
-    	}
-    	
-    	return true
+		return false; 
 
 	} 
+	else if( str === "") {
 
-	/**
+		alert("输入内容不能为空！");
+
+		return;
+
+	}
+	
+	return true;
+
+} 
+
+/**
  	 * [onBack description]
  	 * 处理得到的数据
  	 * @param  {[type]} data [description]
@@ -141,7 +142,7 @@
 
 	 		},
 
- 		}
+ 		};
 
  		 window.cityWether = cityWether;
 
@@ -201,7 +202,7 @@
 
 	 				this.nightWeather = window.cityWether.night;
 
-	 				this.cityName = window.cityWether.name;	
+				this.cityName = window.cityWether.name;	
 
 	 			},
 	 			//提示信息

@@ -5,466 +5,460 @@
  * @version $Id$
  */
 
- 	let log = console.log.bind(console);
+let log = console.log.bind(console);
 
 
+let init = function () {
 
+	let player = new Vue({
 
- 	let init = function () {
+		el: '#player-wrap',
 
- 		let player = new Vue({
+		data: {
 
- 			el: '#player-wrap',
+			song: [{
 
- 			data: {
+				name: 'アイロニ',
 
- 				song:[{
+				'singer': 'まじ娘',
 
-					name:'アイロニ',
+				'src': 'source/まじ娘 - アイロニ.mp3',
 
-					'singer':'まじ娘',
+				'img': 'img/初音未来.jpg',
 
-					'src':"source/まじ娘 - アイロニ.mp3",
+			},
 
-					'img':'img/初音未来.jpg',
+			{
 
-					},
+				name: '光るなら',
 
-					{
+				'singer': 'Goose House',
 
-					name:'光るなら',
+				'src': 'source/Goose house - 光るなら.mp3',
 
-					'singer':'Goose House',
+				'img': 'img/四月是你的谎言.jpg',
 
-					'src':"source/Goose house - 光るなら.mp3",
+			},
 
-					'img': 'img/四月是你的谎言.jpg',
+			// {
 
-					},
+			// 	name:'ステレオポニ',
 
-					// {
+			// 	'singer':'ツキアカリのミチシルベ',
 
-					// 	name:'ステレオポニ',
+			// 	'src':"ステレオポニー - ツキアカリのミチシルベ (TV size).mp3",
 
-					// 	'singer':'ツキアカリのミチシルベ',
+			// 	'img': 'img/黑之契约者.jpg',
 
-					// 	'src':"ステレオポニー - ツキアカリのミチシルベ (TV size).mp3",
+			// },
 
-					// 	'img': 'img/黑之契约者.jpg',
+			{
+				name: '晓之车',
 
-					// },
+				'singer': '南里侑香',
 
-					{
-						name:'晓之车',
+				'src': 'source/FictionJunction - 暁の車.mp3',
 
-						'singer':'南里侑香',
+				'img': 'img/晓之车.jpg',
 
-						'src':"source/FictionJunction - 暁の車.mp3",
+			},
 
-						'img': 'img/晓之车.jpg',
+			{
 
-					},
+				name: 'overlap',
 
-					{
+				'singer': 'kimeru',
 
-						name:'overlap',
+				'src': 'source/kimeru - Overlap.mp3',
 
-						'singer':'kimeru',
+				'img': 'img/游戏王.jpg',
 
-						'src':"source/kimeru - Overlap.mp3",
+			},
 
-						'img': 'img/游戏王.jpg',
 
-					},
+			],
 
+			btnImg: {
 
+				start: ['img/播放.svg', 'img/暂停.svg'],
 
+			},
 
+			volumeClass: {
 
- 				],
+				normal: 'glyphicon-volume-up',
 
- 				btnImg:{
+				isActive: 'glyphicon-volume-off',
 
- 					start:['img/播放.svg','img/暂停.svg'],
+			},
 
- 				},
+			songIndex: 0,
 
- 				volumeClass:{
+			btnIndex: 0,
 
- 					normal:'glyphicon-volume-up' ,
+			audio: document.getElementById('audio'),
 
- 					isActive:'glyphicon-volume-off',
+			playWidth: 0,
 
- 				},
+			volumeWidth: 100,
 
- 				songIndex:0,
+			timer: '',
 
- 				btnIndex:0,
+			songTimer: `00:00`,
 
- 				audio:document.getElementById('audio'),
+			flag: true,
 
- 				playWidth:0,
+			songAlltimer: ``,
 
- 				volumeWidth:100,
+			showList: false,
 
- 				timer:'',
+			liActive: '',
 
- 				songTimer:`00:00`,
+		},
 
- 				flag:true,
+		computed: {
 
- 				songAlltimer:``,
+			play_progress: function () {
 
- 				showList:false,
+				return `width:${this.playWidth}%`;
 
- 				liActive:'',
+			},
 
+			volume_progress: function () {
 
- 			},
+				return `width:${this.volumeWidth}%`;
 
- 			computed: {
+			},
 
- 				play_progress: function () {
+			songSrc: function () {
 
- 					return  `width:${this.playWidth}%`;
+				let that = this;
 
- 				},
+				return this.song[that.songIndex]['src'];
 
- 				volume_progress: function () {
+			},
 
- 					return `width:${this.volumeWidth}%`;
+			song_Time: function () {
 
- 				},
+				return this.songTimer;
 
- 				songSrc:function () {
+			},
 
- 					let that = this;
+			volume_btn: function () {
 
- 					return this.song[that.songIndex]['src'];
+				if (this.flag & this.volumeWidth > 0) {
 
- 				},
+					log('声音');
 
- 				song_Time:function () {
+					return this.volumeClass.normal;
 
- 					return this.songTimer;
+				}
+				else {
 
- 				},
+					log('静音');
 
- 				volume_btn:function () {
+					return this.volumeClass.isActive;
 
- 					if(this.flag & this.volumeWidth>0){
+				}
 
- 						log('声音');
+			},
 
- 						return this.volumeClass.normal;
+			song_Alltime: function () {
 
- 					}
- 					else{
+				let that = this;
 
- 						log('静音')
+				let m = 0;
 
- 						return this.volumeClass.isActive;
+				let s = 0;
 
- 					}
+				let duration = that.audio.duration;
 
- 				},
+				m = Math.floor(duration / 60);
 
- 				song_Alltime:function () {
+				s = Math.floor(duration - m * 60);
 
- 					let that = this;
+				if (s < 10) {
 
-					let m= 0;
+					s = `0${s}`;
 
- 					let s = 0;
+				}
 
- 					let duration =that.audio.duration;
+				that.songAlltimer = `${m}:${s}`;
 
- 					m = Math.floor(duration / 60);
- 					
- 					s = Math.floor(duration - m*60);
+				return that.songAlltimer;
 
- 					if(s<10){
+			},
 
- 						s = `0${s}`;
+			list_show: function () {
 
- 					}
+				return this.showList;
 
- 					that.songAlltimer=`${m}:${s}`;
+			},
 
- 					return that.songAlltimer;
 
- 				},
+		},//computed end
 
- 				list_show:function () {
+		watch: {
 
- 					return this.showList;
 
- 				},
 
 
- 			},//computed end
+		}, //watch end
 
- 			watch: {
+		methods: {
 
- 				
+			//切换下一首歌
+			nextSong: function () {
 
+				let that = this;
 
- 			}, //watch end
+				that.playWidth = 0;
 
- 			methods: {
+				that.songIndex += 1;
 
- 				//切换下一首歌
- 				nextSong: function (event) {
+				that.btnIndex = 0;
 
- 					let that = this;
+				that.audio.src = that.song[that.songIndex]['src'];
 
- 					that.playWidth = 0;			
+				that.playSong();
 
-					that.songIndex +=1;
+			},
 
-					that.btnIndex=0;
+			//播放歌曲
+			playSong: function () {
 
-					that.audio.src=that.song[that.songIndex]['src'];
+				let that = this;
+
+				that.btnIndex = 1;
+
+				that.audio.play();
+
+				that.liEvent(that.songIndex);
+
+				that.playProgress();
+
+			},
+
+			//切换歌曲
+			switchSong: function (index) {
+
+				let that = this;
+
+				that.playWidth = 0;
+
+				that.songIndex = index;
+
+				that.btnIndex = 0;
+
+				that.audio.src = that.song[that.songIndex]['src'];
+
+				that.playSong();
+
+				log('切换歌曲');
+
+			},
+
+			//播放按钮点击事件
+			playEvent: function () {
+
+				let that = this;
+
+				if (that.audio.paused) {
 
 					that.playSong();
 
- 				},
+					that.playProgress();
 
- 				//播放歌曲
- 				playSong: function () {
+				}
+				else {
 
- 					let that = this;
+					this.btnIndex = 0;
 
- 					that.btnIndex = 1;
+					this.audio.pause();
 
- 					that.audio.play();
+					window.clearTimeout(this.timer);
 
- 					that.liEvent(that.songIndex);
+				}
 
- 					that.playProgress();
+			},
 
- 				},
+			//鼠标点击进度条时，控制播放
+			controlPlay: function (event) {
 
- 				//切换歌曲
- 				switchSong:function (index) {
+				let that = this;
 
- 					let that = this;
+				let audio = this.audio;
 
- 					that.playWidth = 0;			
+				audio.currentTime = (event.offsetX / 250) * audio.duration;
 
-					that.songIndex =index;
+				that.playWidth = event.offsetX / 250;
 
-					that.btnIndex=0;
+				that.playSong();
 
-					that.audio.src=that.song[that.songIndex]['src'];
+				that.playProgress();
 
-					that.playSong();
+			},
 
-					log('切换歌曲')
+			//自动运行的进度条
+			playProgress: function () {
 
- 				},
+				window.clearTimeout(this.timer);
 
- 				//播放按钮点击事件
- 				playEvent:function () {
+				this.playWidth = (this.audio.currentTime / this.audio.duration) * 100;
 
- 					let that = this;
+				this.controlSongtime();
 
- 					if (that.audio.paused) {
+				this.controlAlltime();
 
-			 			that.playSong();
+				if (this.audio.ended) {
 
-			 			that.playProgress();
+					window.clearTimeout(this.timer);
 
-			 		}
-			 		else{
+					this.btnIndex = 0;
 
-			 			this.btnIndex =0;
+					if (this.songIndex + 1 === this.song.length) {
 
-			 			this.audio.pause();
+						this.switchSong(0);
 
-			 			window.clearTimeout(this.timer);
+						return;
 
-			 		}
+					} else {
 
- 				},
+						this.nextSong();
 
- 				//鼠标点击进度条时，控制播放
- 				controlPlay:function (event) {
-
- 					let that = this;
-
- 					let audio = this.audio;
-
- 					audio.currentTime = (event.offsetX / 250 ) * audio.duration;
-
- 					that.playWidth = event.offsetX / 250;
-
- 					that.playSong();
-
- 					that.playProgress();
-
- 				},
-
- 				//自动运行的进度条
- 				playProgress:function () {
-
- 					window.clearTimeout(this.timer); 				
-
-					this.playWidth = (this.audio.currentTime/this.audio.duration)*100;
-
-					this.controlSongtime();
-
-					this.controlAlltime();
-
-					if(this.audio.ended) {
-
-						window.clearTimeout(this.timer);
-
-						this.btnIndex = 0;
-
-						if(this.songIndex+1 === this.song.length){
-
-							this.switchSong(0)
-
-							return;
-
-						}else{
-
-							this.nextSong();
-
-							return;
-
-						}
+						return;
 
 					}
 
- 					this.timer = window.setTimeout(this.playProgress,1000);
+				}
 
- 				},
+				this.timer = window.setTimeout(this.playProgress, 1000);
 
- 				//控制音量条
- 				controlVolume:function (event) {
+			},
 
- 					let that = this;
+			//控制音量条
+			controlVolume: function (event) {
 
- 					let audio = this.audio;
+				let that = this;
 
- 					audio.volume =event.offsetX / 120;
+				let audio = this.audio;
 
- 					that.volumeWidth = (event.offsetX / 120)*100;
+				audio.volume = event.offsetX / 120;
 
- 					this.flag = true;
+				that.volumeWidth = (event.offsetX / 120) * 100;
 
- 				},
+				this.flag = true;
 
- 				//静音与否
- 				controlMute: function () {
+			},
 
- 					if(this.flag){
+			//静音与否
+			controlMute: function () {
 
- 						this.flag = false;
+				if (this.flag) {
 
- 						this.audio.volume = 0;
+					this.flag = false;
 
- 						this.volumeWidth = 0;
+					this.audio.volume = 0;
 
- 						// log(this.flag,"0")
+					this.volumeWidth = 0;
 
- 						return;
+					// log(this.flag,"0")
 
-	 				}
-	 				else{
+					return;
 
-	 					this.flag = true;
+				}
+				else {
 
-	 					this.audio.volume = 1;
+					this.flag = true;
 
-	 					this.volumeWidth = 100;
+					this.audio.volume = 1;
 
-	 					// log(this.flag,"1")
-	 				}
- 					
+					this.volumeWidth = 100;
 
- 				},
-
- 				//音乐时间
- 				controlSongtime:function () {
-
- 					let that = this;
-
- 					let m = 0;
-
- 					let s = 0;
-
- 					that.songTimer = that.audio.currentTime;
-
- 					m= Math.floor(that.songTimer / 60);
- 					
- 					s=Math.floor(that.songTimer - m*60);
-
- 					if(s<10){
-
- 						s = `0${s}`;
-
- 					}
-
- 					that.songTimer = `0${m}:${s}`;
-
- 				},
-
- 				//音乐总时间
- 				controlAlltime:function () {
-
- 					let that = this;
-
- 					 that.audio.addEventListener("canplay",function () {
-
- 						that.songAlltimer = that.audio.duration;
-
- 					 });
- 				
-
- 				},
-
- 				//控制列表隐藏与否
- 				controlList:function () {
-
- 					this.showList = !this.showList;
-
- 					log(this.showList)
-
- 				},
-
- 				//点击列表播放事件
- 				liEvent:function (index) {
-
- 					log('liEvent')
-
- 					$('.song-list>li').eq(index).addClass('active').siblings().removeClass('active');
-
- 					if(index != this.songIndex) {
-
- 						this.switchSong(index);
-
- 					}
+					// log(this.flag,"1")
+				}
 
 
- 				}
- 				
+			},
+
+			//音乐时间
+			controlSongtime: function () {
+
+				let that = this;
+
+				let m = 0;
+
+				let s = 0;
+
+				that.songTimer = that.audio.currentTime;
+
+				m = Math.floor(that.songTimer / 60);
+
+				s = Math.floor(that.songTimer - m * 60);
+
+				if (s < 10) {
+
+					s = `0${s}`;
+
+				}
+
+				that.songTimer = `0${m}:${s}`;
+
+			},
+
+			//音乐总时间
+			controlAlltime: function () {
+
+				let that = this;
+
+				that.audio.addEventListener("canplay", function () {
+
+					that.songAlltimer = that.audio.duration;
+
+				});
 
 
- 			},  //methods end
+			},
+
+			//控制列表隐藏与否
+			controlList: function () {
+
+				this.showList = !this.showList;
+
+				log(this.showList);
+
+			},
+
+			//点击列表播放事件
+			liEvent: function (index) {
+
+				log('liEvent');
+
+				$('.song-list>li').eq(index).addClass('active').siblings().removeClass('active');
+
+				if (index != this.songIndex) {
+
+					this.switchSong(index);
+
+				}
+
+
+			}
 
 
 
- 		});
+		},  //methods end
 
 
 
- 	
+	});
 
 
- 	}
 
 
- 	window.onload = init;
+
+
+};
+
+
+window.onload = init;
