@@ -1,0 +1,162 @@
+/*
+ * @Author: Hadwz 
+ * @Date: 2017-10-12 21:30:52 
+ * @Last Modified by: Hadwz
+ * @Last Modified time: 2017-10-12 23:25:41
+ */
+
+/* 导航栏区域 */
+.navbar-brand {
+    background: url(../img/logo.jpg) no-repeat center center;
+    width:50px;
+    background-size: 75%;
+
+}
+
+
+/* 左侧栏 */
+.news-group li{
+
+    border: 0;
+    border-radius: 3px;
+    margin-bottom: 3px;
+
+}
+
+.news-group li a{
+    color:grey;
+}
+
+.news-group li:hover{
+    background-color: #ea0c3d;
+    color: grey;
+}
+
+.news-group li.active{
+    background-color:#ea0c3d;
+}
+
+.news-group li.active a, .news-group li:hover a{
+    color:white;
+    text-decoration: none;
+}
+
+.news-group li.active:hover{
+    background-color: #ea0c3d;
+}
+
+
+/* 新闻列表 */
+
+.news-list-item:first-child{
+    margin-top:0;
+}
+
+.news-list-item div:first-child{
+    padding-left: 0;
+}
+
+.news-list-item{
+
+    padding-top:15px;
+    padding-bottom: 15px;
+    border-bottom:1px solid #eee;
+    
+
+}
+
+.news-list-item img, .side-bar-card img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 3px;
+    display: block;
+}
+
+.news-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:130px;
+}
+
+.news-title{
+    font-size:18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.5em;
+    
+}
+
+.news-title a{
+    color:#444;
+}
+
+.news-title a:hover{
+    color:#337ab7;
+    text-decoration: none;
+}
+
+
+.news-info{
+   color:#888;
+   line-height: 30px;
+   height:30px;
+   display: flex;
+   justify-content: flex-start;
+   align-content: flex-end;
+   
+}
+
+.avatar img{
+    display: inline-block;
+    width:15px;
+    height:15px;
+    margin-right:5px;
+    
+}
+
+/* 右边侧栏 */
+
+.side-bar-card{
+    background-color: rgba(0,0,0,.1);
+    margin-top: 20px;
+    padding:10px 0;
+    border-radius:3px;
+}
+
+.side-bar-card.flag{
+    padding: 20px 0;
+}
+
+.side-bar-card .text-lg{
+    font-size:120%;
+}
+
+.card-list{
+    margin:0;
+    padding:0;
+}
+
+.card-list p{
+    margin:0;
+}
+
+.card-title{
+    padding:0 15px;
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+.card-body .card-item{
+    padding:2px 15px;
+    list-style: none;
+}
+
+.card-item:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.item-desc{
+    color:#999;
+}
