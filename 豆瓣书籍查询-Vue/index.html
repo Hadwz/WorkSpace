@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>豆瓣书籍查询</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./js/jquery-1.9.1.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/vue.js"></script>
+	<script src="./js/index.js"></script>
+</head>
+<body>
+	<section class="container" id="booker"  @keyup.enter=clickHandler>
+		<div class="row">
+
+			
+			<section class="col-md-8 col-md-offset-2">
+
+				<!-- 搜索框 -->
+				<h1 class="text-center">查询书籍 <small>豆瓣图书</small></h1>
+				<div class="input-group">
+					<input type="text" class="form-control input-lg" placeholder="输入书名" v-model="input">
+					<span class="input-group-btn">
+						<button class="btn btn-info btn-lg" @click=clickHandler>搜索</button>	
+					</span>
+				</div>
+
+				<!-- 书籍信息 -->
+				<div class="row">
+					<table class="book-info table-bordered table-hover col-md-12 table-striped" v-show="tableShow">
+							
+							<colgroup>
+								<col class="book-index col-md-1">
+								<col class="book-title col-md-3">
+								<col class="book-author col-md-4">
+								<col class="book-date">
+								<col class="book-mark">
+								<col class="book-price">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">序号</th>
+									<th scope="col">{{th.title}}</th>
+									<th scope="col">{{th.author}}</th>
+									<th scope="col">{{th.date}}</th>
+									<th scope="col">{{th.mark}}</th>
+									<th scope="col">{{th.price}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="(item,index) in bookData">
+									<td>{{index+1}}</td>
+									<td>{{item.title}}</td>
+									<td>{{item.author[0]}}</td>
+									<td>{{item.pubdate}}</td>
+									<td>{{item.rating.average}}</td>
+									<td>{{item.price}}</td>
+								</tr>
+							</tbody>
+					</table>
+				</div>
+
+				<!-- 提示框 -->
+				<div class="alert alert-warning alert-dismissible text-center" role="alert" v-show="warning">
+					<strong>温馨提示:</strong>
+					{{warningMsg}}
+				</div>
+
+				<!-- 分页区 -->
+				<div class="pager-wrap col-md-6 col-md-offset-3">
+					<ul class="pagination">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<!-- <li v-for="(item,index) in Listpage"> -->
+						<li>
+							<a href="#">1</a>
+						</li>
+						<li>
+							<a href="#">2</a>
+						</li>
+						<li>
+							<a href="#">3</a>
+						</li>
+						<li>
+							<a href="#">4</a>
+						</li>
+						<li>
+							<a href="#">5</a>
+						</li>
+						<li>
+							<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+	</section>
+</body>
+</html>

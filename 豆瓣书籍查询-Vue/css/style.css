@@ -1,0 +1,41 @@
+/*
+ * @Author: Hadwz 
+ * @Date: 2017-10-13 23:21:17 
+ * @Last Modified by: Hadwz
+ * @Last Modified time: 2017-10-14 17:01:19
+ */
+
+
+
+.container {
+	margin:3rem auto;
+	/* background-color: lightblue; */
+}
+
+
+.book-info{
+	margin:3rem 0;
+	background-color: white;
+	text-align: center;
+}
+
+.book-info th{
+	text-align: center;
+	height:3rem;
+}
+
+.book-info td{
+	height:3rem;
+}
+
+.others{
+	background-color: red;
+}
+
+
+.pager-wrap{
+	background-color: lightblue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
