@@ -2,19 +2,19 @@
  * @Author: Hadwz 
  * @Date: 2017-10-13 23:21:17 
  * @Last Modified by: Hadwz
- * @Last Modified time: 2017-10-14 17:01:19
+ * @Last Modified time: 2017-10-14 23:09:46
  */
 
 
 
 .container {
-	margin:3rem auto;
+	margin:1rem auto;
 	/* background-color: lightblue; */
 }
 
 
 .book-info{
-	margin:3rem 0;
+	margin:2rem 0;
 	background-color: white;
 	text-align: center;
 }
@@ -34,8 +34,15 @@
 
 
 .pager-wrap{
-	background-color: lightblue;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.loading-icon{
+	margin-top:3rem;
+}
+
+.loading-icon p{
+	margin-top:1rem;
 }

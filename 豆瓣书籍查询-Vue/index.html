@@ -5,8 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>豆瓣书籍查询</title>
+	<link rel="shortcut icon" href="https://www.douban.com/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/font-awesome.min.css">
 	<script src="./js/jquery-1.9.1.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 	<script src="./js/vue.js"></script>
@@ -16,7 +18,6 @@
 	<section class="container" id="booker"  @keyup.enter=clickHandler>
 		<div class="row">
 
-			
 			<section class="col-md-8 col-md-offset-2">
 
 				<!-- 搜索框 -->
@@ -27,11 +28,15 @@
 						<button class="btn btn-info btn-lg" @click=clickHandler>搜索</button>	
 					</span>
 				</div>
+				<!-- 正在加载 -->
+				<div class="col-md-4 col-md-offset-5 loading-icon" v-show="iconShow">
+					<i class="fa fa-spinner fa-pulse fa-3x"></i>
+					<p>加载中.....</p>
+				</div>
 
 				<!-- 书籍信息 -->
-				<div class="row">
-					<table class="book-info table-bordered table-hover col-md-12 table-striped" v-show="tableShow">
-							
+				<div class="row"  v-show="tableShow">
+					<table class="book-info table-bordered table-hover col-md-12 table-striped">
 							<colgroup>
 								<col class="book-index col-md-1">
 								<col class="book-title col-md-3">
@@ -61,44 +66,20 @@
 								</tr>
 							</tbody>
 					</table>
+					<!-- 分页区 -->
+					<div class="pager-wrap col-md-6 col-md-offset-3">
+						<ul class="pagination">
+							<li  v-for="(item,index) in Listpage" @click="clickHandler(index)">
+								<a href="#">{{index+1}}</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 
 				<!-- 提示框 -->
 				<div class="alert alert-warning alert-dismissible text-center" role="alert" v-show="warning">
 					<strong>温馨提示:</strong>
 					{{warningMsg}}
-				</div>
-
-				<!-- 分页区 -->
-				<div class="pager-wrap col-md-6 col-md-offset-3">
-					<ul class="pagination">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<!-- <li v-for="(item,index) in Listpage"> -->
-						<li>
-							<a href="#">1</a>
-						</li>
-						<li>
-							<a href="#">2</a>
-						</li>
-						<li>
-							<a href="#">3</a>
-						</li>
-						<li>
-							<a href="#">4</a>
-						</li>
-						<li>
-							<a href="#">5</a>
-						</li>
-						<li>
-							<a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
 				</div>
 			</section>
 		</div>
