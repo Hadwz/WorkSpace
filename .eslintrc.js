@@ -19,7 +19,7 @@ module.exports = {
             'tab'
         ],
         "linebreak-style": [
-            "error",
+            "off",
             "windows"
         ],
         "quotes": [
@@ -27,7 +27,7 @@ module.exports = {
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
         ],
 
