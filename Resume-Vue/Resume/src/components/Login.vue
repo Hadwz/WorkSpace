@@ -47,7 +47,7 @@ import bus from './eventBus.js';
 		data(){
 			return {
 				imgSrc: {
-					fly: "/static/img/fly.png"
+					fly: "static/img/fly.png"
 				},
 				msg: 'Welcome',
 			}
@@ -75,7 +75,7 @@ import bus from './eventBus.js';
 		padding:2rem 2rem;
 		background-color: lightblue;
 		box-shadow: 10px 15px 20px rgba(50,50,50,0.4);
-		background: url('/static/img/timg.jpg') no-repeat;
+		background: url("../static/img/timg.jpg") no-repeat;
 		
 	}
 

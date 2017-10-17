@@ -21,8 +21,8 @@ export default {
 	data () {
 		return {
 			imgSrc: {
-				spider1: "/static/img/spider.jpg",
-				spider2: "/static/img/spider2.jpg",
+				spider1: "static/img/spider.jpg",
+				spider2: "static/img/spider2.jpg",
 			},
 		}
 	},

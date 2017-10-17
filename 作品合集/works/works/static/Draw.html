@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Draw-beta2</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style4.css">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/Scope-And-Data.js"></script>
+<script type="text/javascript" src="js/Util.js"></script>
+<script type="text/javascript" src="js/role-Visual-Effect.js"></script>
+<script type="text/javascript" src="js/myStorage.js"></script>
+<script type="text/javascript" src="js/draw.js"></script>
+<link href="" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- 角色选择区域 -->
+			<div class="col-md-6 sleft">
+				<div class="row center-block">
+						<!-- 介绍区 -->
+					<div class="row text-center">
+						<h1>
+							选择你的角色 
+						</h1>
+					</div>
+						<!-- 介绍区 -->
+						<!-- 角色头像区 -->
+					<div class="row role-frame text-center">
+						<div class="role-x">
+							<img src="img/问号.png" alt="角色头像框" class="img-circle">
+							<h4>？？？</h4>
+							<span class="text-muted">? ? ?</span>
+						</div>
+						<div class="role-x">
+							<img src="img/问号.png" alt="角色头像框" class="img-circle">
+							<h4>？？？</h4>
+							<span class="text-muted">? ? ?</span>
+						</div>
+						<div class="role-x">
+							<img src="img/问号.png" alt="角色头像框" class="img-circle">
+							<h4>？？？</h4>
+							<span class="text-muted">? ? ?</span>
+						</div>
+
+						<div class="role-x">
+								<img src="img/问号.png" alt="角色头像框" class="img-circle">
+								<h4>？？？</h4>
+								<span class="text-muted">? ? ?</span>
+						</div>
+						<div class="role-x">
+								<img src="img/问号.png" alt="角色头像框" class="img-circle">
+								<h4>？？？</h4>
+								<span class="text-muted">? ? ?</span>
+						</div>
+						<div class="role-x">
+								<img src="img/问号.png" alt="角色头像框" class="img-circle">
+								<h4>？？？</h4>
+								<span class="text-muted">? ? ?</span>
+						</div>
+					</div>
+						<!-- 角色头像区end -->
+
+						<!-- 按钮区域 -->
+					<div class="row button-area text-center">
+						<div>
+							<button class="btn-primary active btn-lg">开始选择
+							</button>
+						</div>
+						<div>
+							<small class="btn-hint">
+								按 <kbd>Enter</kbd> 开始
+							</small>
+						</div>
+					</div>
+						<!-- 按钮区域end -->
+				</div>
+			</div>
+
+			<!-- 角色选择区域end -->
+
+			<!-- 选中角色区域 -->
+			<div class="col-md-6 right">
+				<div class="row text-center">
+					<article class="col-md-12 role-info hide">
+						<img src="img/喵星人.jpg" alt="角色头像框" class="img-circle role-img">
+						<h4>XXX</h4>
+						<span class="text-muted">XXX</span>
+						<button type="button" class="btn btn-primary role-say"  
+							data-container="body" data-toggle="popover" data-placement="top"
+							title="右键点我---" 
+							data-content="XXX">
+						</button>
+						<button type="button" class="btn btn-primary role-slogan"  
+							data-container="body" data-toggle="popover" data-placement="left" 
+							data-content="XXX">
+						</button>
+						<button type="button" class="btn btn-danger myMenu">
+							<a href="draw-Fight.html">决斗开始！</a></button>
+					</article>
+				</div>
+			</div>
+
+			<!-- 选中角色区域end -->
+		</div>
+	</div>
+</body>
+</html>

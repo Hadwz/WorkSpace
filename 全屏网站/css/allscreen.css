@@ -1,0 +1,740 @@
+*{
+	margin: 0;
+	padding: 0;
+
+}
+::-webkit-scrollbar {
+    width: 5px;
+	
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c4cbd5;
+} /* 滑块颜色 */
+html{
+    height: 100px;
+}
+body{
+    height: 100px;
+}
+.clearfixed{
+    zoom: 1;
+}
+.clearfixed:after{
+    content: "";
+    display: block;
+    clear: both;
+
+}
+.fixedtop{
+  width:100%;
+  background-color: #65c178;
+  height: 54px;
+}
+.fixedtop .left{
+	 height: 54px;
+	 width: 15%;
+	 float: left;
+}
+ .logo{
+	 height: 54px;
+	 display:block;
+     line-height: 54px;
+}
+
+.logo h1{
+	 margin: 0 0 0 20px;
+     color: #fff;
+     font-size:30px;
+     padding: 0;
+}
+
+.logo small{
+	color: #fff;
+	font-size: 15px;
+}
+
+
+
+.fixedtop .middle{
+	width: 65%;
+	float: left;
+    height: 100%;
+
+}
+
+.iconav {
+    list-style: none;
+    display: inline-block;
+    height: 100%;
+
+}
+
+.iconav  a{
+    display: inline-block;
+    position: relative;
+}
+.iconav  span{
+    width: 17px;
+    height: 17px;
+    background-color: #424242;
+    border-radius: 100%;
+    display: inline-block;
+    position: absolute;
+    color: #fff;
+    text-align: center;line-height: 17px;
+    font-size: 13px;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    top:-7px;
+    right: -5px;
+}
+.iconav li{
+    display: inline-block;
+    vertical-align: middle;
+}
+.iconav:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+
+
+}
+
+.fixedtop .right{
+	width: 20%;
+	float: left;
+    height: 100%;
+}
+.searchbar{
+    border-radius: 3rem;
+    background: rgba(0, 0, 0, .15);
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width:97%;
+
+
+}
+.searchbar input {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0 35px 0 15px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    color: #a4d6ae;
+    outline: none;
+}
+.searchbar input::-webkit-input-placeholder {
+    color: #a4d6ae;
+}
+
+.searchbar button {
+
+    position: absolute;
+    background: url(../images/sch_btn.png) no-repeat center center;
+    width: 32px; height: 32px;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    border: none;
+    text-indent: -9999px;
+
+
+
+}
+.fixedtop .right:after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.warp{
+    position: absolute;
+    width: 100%;
+    top:54px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+.warp .left{
+    width: 15%;
+    bottom: 0;
+    background: #fff;
+    height: 100%;
+    box-shadow: 0px 5px 10px #c4cbd5;
+    float: left;
+
+
+}
+
+.menu{
+    width: 100%;
+    background: #061721;
+    position: relative;
+    color: #fff;
+
+}
+
+.menu .author{
+    display: block;
+    font-size: 16px;
+    font-family: 微软雅黑;
+    float: left;
+    padding: 20px 58px 20px 18px;
+}
+
+.menu .btn_toggle{
+    display: block;
+    float: right;
+    background: url(../images/menu_btn.png) no-repeat center center;
+    text-indent: -9999px;
+    overflow: hidden;
+    cursor: pointer;
+    position: absolute;
+    right: 18px; top: 50%;
+    margin-top: -20px;
+    width: 40px; height: 40px;
+
+}
+.userinfo{
+    text-align: center;
+}
+.userinfo .avatar {
+    position: relative;
+    width: 152px;
+    height: 152px;
+    background: url(../images/avatar_bg.png) no-repeat center center;
+    display: inline-block;
+
+
+}
+.userinfo .avatar span{
+    position: absolute;
+    border-radius:100%;
+    overflow: hidden;
+    display: block;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+
+
+
+}
+.userinfo .avatar span img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.userinfo h5 {
+    font-size: 24px;
+    color: #2c3542;
+    font-weight: bold;
+    margin: 25px 0 12px 0;
+}
+.userinfo p {
+    margin: 0 0 30px 0;
+    color: #828282;
+
+}
+
+.ico{
+    display: inline-block;
+    background-repeat:no-repeat;
+    background-position: center center;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+.i_tv {
+    background-image: url(../images/ico_tv.png);
+}
+.i_video {
+    background-image: url(../images/ico_video_2.png);
+}
+.i_news {
+    background-image: url(../images/ico_news.png);
+}
+.i_user {
+    background-image: url(../images/ico_iuser.png);
+}
+.i_time {
+    background: url(../images/ico_time.png) ;
+}
+
+
+.navigater{
+
+    border-top:1px solid #f0f0f0 ;
+}
+.navigater .ico {
+    width: 20px;
+    height: 20px;
+    margin: -3px 0 0 0;
+}
+.navigater ul {
+    list-style: none;
+    margin: 30px 0 0 0; padding: 0;
+    text-align: center;
+
+
+
+
+
+}
+.navigater ul li {
+    padding: 0 18px;
+
+}
+.navigater a {
+    display: block;
+    padding: 14px 0;
+    color: #455469;
+    text-decoration: none;
+}
+
+
+
+.warp .middle{
+    float: left;
+    width: 64%;
+    height: 100%;
+    overflow-y: scroll;
+}
+.banner{
+    width: 100%;
+    height:338px ;
+    position: relative;
+    z-index: 1;
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+.banner .info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5);
+    color: #e6e6e6;
+    padding: 35px 20px 35px 30px ;
+
+
+
+}
+.banner .info h4{
+    display: inline-block;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 微软雅黑;
+    background: url("../images/ico_video.gif") no-repeat left ;
+    padding-left: 40px; ;
+}
+.banner .info a{
+    color: #e6e6e6;
+    text-decoration: none;
+    float: left;
+}
+
+.info .pull-right{
+    float: right;
+
+}
+
+.info .pull-right .attr{
+    list-style: none;
+    float: left;
+    font-size: 13px;
+    margin-right: 20px;
+    font-family: 微软雅黑;
+ }
+
+
+.list>ul>li{
+    display: block;
+    width: 45%;
+    float: left;
+    padding: 25px 10px 10px 25px;
+}
+.border{
+    border:1px solid  #e6e6e6;
+}
+
+
+.list>ul>li{
+    display: inline-block;
+
+}
+.list>ul>li>.media{
+    width: 100%;
+    height: 235px;
+    position: relative;
+
+
+
+}
+
+.list ul li .media >img{
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+   max-width: 100%;
+
+
+}
+
+.list ul li .media >.info{
+  position: absolute;
+    bottom: 0;
+}
+.list ul li .media >.info h4 {
+    display: inline-block;
+    font-size: 20px;
+    font-family: 微软雅黑;
+    font-weight: bold;
+    padding: 16px 16px 16px 25px;
+    margin-left: 16px;
+    background: url("../images/ico_tv.png") no-repeat left ;
+}
+.list ul li .media >.info a{
+    color: #fff;
+    text-decoration: none;
+    bottom: 0;
+}
+
+.author_info{
+ position: relative;
+    padding: 20px;
+}
+.author_info .author_name .avatar{
+   float: left;
+
+}
+.author_info .author_name h5 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #455469;
+    font-family: 微软雅黑;
+
+}
+.author_font{
+    display: inline-block;
+    margin-left: 10px;
+}
+.author_info .author_name .desc{
+    font-size: 12px;
+    font-weight: bold;
+    color: #999999;
+    font-family: 微软雅黑;
+}
+.author_info  .btn{
+    border-radius: 5px;
+    padding: 8px 10px 8px 30px ;
+    border: 1px solid #cfd3d8;
+    display: inline-block;
+    position: absolute;
+    right:20px;
+    top: 25%;
+    font-family: 微软雅黑;
+    font-size: 14px;
+    background: url("../images/btn_wifi.png") no-repeat 5px;
+    cursor: pointer;
+}
+.content{
+    font-family: 微软雅黑;
+    font-size: 15px;
+    color: #b0b0b0;
+    padding: 10px 10px 30px 10px;
+}
+
+.amount{
+    border-top: 1px solid #e6e6e6;
+ text-align: center;
+    color: #455469;
+    font-family: 微软雅黑;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+.amount .data{
+    float: left;
+    width: 26%;
+
+    padding:20px 0;
+    background:  #f0f0f0 url("../images/border_%23fff%20.png") no-repeat right;
+
+
+
+
+}
+.amount .data_last{
+    color: #fff;
+    float: left;
+    width: 22%;
+    padding:20px 0;
+    background:  #69c37b;
+}
+
+.amount small{
+    display: block;
+    font-family: 微软雅黑;
+    font-size: 14px;
+    color: #999999;
+
+}
+.amount .data_last small{
+    color: #fff;
+}
+.author_name>a {
+    display: inline-block;
+    width: 46px;
+    height: 45px;
+    position: relative;
+    background: url('../images/media_user_bg.jpg') no-repeat center ;
+
+
+
+}
+.author_name .avatar{
+    display: block;
+    overflow: hidden;
+    border-radius: 100%;
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 5px;
+    left: 5px;
+
+}
+
+.author_name .avatar>img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.warp .right{
+    float: left;
+    width: 20%;
+    height: 100%;
+    background: #f2f2f2;
+    overflow-y: scroll;
+}
+
+.right .blogs {
+    padding: 15px 30px 15px 25px;
+}
+
+.right .blogs span{
+    display: block;
+    font-size: 15px;
+    font-family: 微软雅黑;
+    color: #455469;
+    padding: 0 0 0px 0;
+
+
+}
+.right .blogs .blogs_pic{
+    margin: 5px 0;
+}
+.right .blogs .blogs_pic a{
+    display: inline-block;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    margin-right: 4px ;
+    margin-top: 10px;
+
+}
+.right .blogs .blogs_pic a span{
+    display: block;
+    border-radius: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+.right .blogs .blogs_pic a>img{
+    position: absolute;
+    right: -3px;
+    top: -6px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+
+}
+.right .blogs .blogs_pic a span img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.message{
+  padding: 0px  20px;
+}
+.message>span{
+    padding: 5px 5px 5px 7px;
+    border-top: 1px solid #e3e7ee;
+    background-color: #fff;
+ font-family: 微软雅黑;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    line-height: 20px;
+    font-size: 12px;
+    color: #999;
+}
+.message .title{
+    position: relative;
+    padding:15px 10px ;
+    background:#455469;
+
+}
+.message .title h4{
+    display: inline-block;
+    font-size: 12px;
+    font-family: 微软雅黑;
+    color: #a9b1bc;
+
+
+}
+.message .title h4 span{
+    color: #69c37b;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 15px;
+
+}
+.message .title>span{
+    position: absolute;
+    display: inline-block;
+    float: right;
+    right: 10px;
+    top:40%;
+    width: 21px;
+    height: 15px;
+}
+
+.message_body{
+    padding:15px 11px ;
+    background: #fff;
+    height: 250px;
+    overflow-y: scroll;
+
+
+}
+
+ .user_title{
+    position: relative;
+     height: 30px;
+     padding: 5px 0;
+
+
+}
+
+
+ .user_title a{
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+
+}
+.user_title a>img{
+    position: absolute;
+    bottom: -12px;
+    left: 40%;
+}
+ .user_title span{
+    display: block;
+    border-radius: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+
+}
+ .user_title span img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.user_title .user_title_pic{
+
+    top:0;
+    left: 0;
+    position: absolute;
+}
+ .user_title h4{
+    display: inline-block;
+    position: absolute;
+
+    font-size: 12px;
+    font-family: 微软雅黑;
+    color: #ccc;
+     right: 0;
+     top: 20%;
+}
+
+.user_even .user_title .user_title_pic a{
+
+    top:0;
+    left: 175px;
+}
+.user_even .user_title h4{
+    left: 0;
+    top: 20%;
+}
+.user_odd,.user_even{
+    margin:10px 0 ;
+}
+
+.user_message{
+    padding: 15px 12px ;
+    font-size: 12px;
+    font-family: 微软雅黑;
+    color: #a0a6af;
+    border: 1px solid #e3e7ee;
+    border-radius: 6px;
+}
+
+
+.ad_pic{
+    padding: 20px;
+    background: #f2f2f2;
+}
+.ad_pic a{
+    width: 100%;
+    height:150px ;
+    position: relative;
+    z-index: 1;
+}
+.ad_pic a img{
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px 0;
+}
+
