@@ -114,7 +114,7 @@ import {inputJudge} from './Utils.js';
 				if(data.errorCode === 0) {
 					bus.$emit('userDefinedEvent',2);
 					setTimeout(function () {
-						window.location = "../static/dist/index.html";},2000);
+						window.location = "./static/dist/index.html";},2000);
 				} else if(data.errorCode === -1) {
 					bus.$emit('userDefinedEvent',3);
 				}
