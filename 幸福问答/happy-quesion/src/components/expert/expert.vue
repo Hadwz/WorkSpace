@@ -26,10 +26,19 @@
          <span class="Free-question">(您有一次免费提问机会)</span>
 				 <info-bar class="infoBar" :show="infoActive" :msg="infoMsg"></info-bar>
       </div>
-
-      <!-- <happy-expert></happy-expert> -->
+			
 			<my-question ref="myQues"></my-question>
-  	</div>
+		 
+			<button class="slide-btn"  @click="showPop" :class="[show ? 'slide-btn-enter' : '']">
+				幸福专家
+				<img id="arrow" :src="arr">
+			</button>
+			<div class="popu0">
+				<popup v-model="show" :show-mask="false">
+					<happy-expert></happy-expert>
+				</popup>
+   	 	</div>
+  		</div>
 </template> 
 
 <script>
@@ -39,20 +48,26 @@
 	import infoBar from 'base/infoBar';
 	import Back from 'base/back';
 	import myQuestion from 'base/myQuestion';
+	import {Popup,XSwitch} from 'vux';
 
 export default {
+
 		components:{
 			HappyExpert,
 			infoBar,
 			Back,
-			myQuestion
+			myQuestion,
+			XSwitch,
+			Popup,
 		},
 
 		data () {
 			return {
 				userInput:'',
 				infoActive:false,
-				infoMsg:''
+				infoMsg:'',
+				slideShow:false,
+				show:false
 			}
 		},
 
@@ -65,7 +80,15 @@ export default {
 
 			payState(){
 				return this.user.isVip ? 'static/images/tag_y.png' : 'static/images/kaitong_btn.png'
+			},
+
+			arr() {
+			if (!this.show) {
+				return 'static/images/arrow2.jpg';
+			} else {
+				return 'static/images/arrow.png';
 			}
+		}
 		},
 
 		methods:{
@@ -105,6 +128,9 @@ export default {
 				if (!this.user.userId) {
 					this.infoMsg = '您还没有登录呢！';
 					this.infoActive = true;
+					window.setTimeout(()=> {
+						this.$router.push('/');
+					},2000);
 					return;
 				} 
 				else if  (!this.user.isVip  ) {
@@ -112,6 +138,10 @@ export default {
 				} else {
 					return;
 				} 
+			},
+
+			showPop() {
+				this.show = !this.show;
 			}
 		}
 
@@ -124,10 +154,13 @@ export default {
 
  @import '~common/less/mixin.less';
 
+
 #head{
   height: 100%;
-  width: 100%;
+	width: 100%;
+	position: relative;
 }
+
 
 //顶部栏
 .tops{
@@ -237,5 +270,47 @@ export default {
 	font-size: 20px;
 	
 }
+
+	.slide{
+		z-index:550;
+	}
+
+ .slide-btn{
+  width: 30%;
+  height: 70px;
+	border:1px solid transparent;
+	border-image: svg(1pxBorder param(--color #e6e6e6)) 2 2 stretch;
+  font-size: 30px;
+	line-height: 70px;
+	background:#fff;
+ 	z-index:505;
+	outline: none;
+	position: relative;
+	left: 35%;
+	bottom:-100px;
+ }
+
+ .slide-btn{
+	 transition: all 0.3s ease;
+ }
+ .slide-btn-enter{
+	 transform: translateY(-800px);
+ }
+ .popup0{
+	background-color: #fff;
+}
+
+#arrow{
+  margin-top: 7vw;
+  position: absolute;
+  left: 37%;
+  z-index: 505;
+  transition-property:all;
+  transition-duration:0.5s;
+}
+#arrow:hover{
+  transform:translateY(10px);
+}
+
 
 </style>

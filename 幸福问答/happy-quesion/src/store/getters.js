@@ -17,3 +17,5 @@ export const userState = state => {
 };
 
 export const question = state => state.question;
+
+export const expert = state => state.expert;

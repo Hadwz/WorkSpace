@@ -29,7 +29,7 @@ const routes = [{
 	children: [
 		{
 			path: '/expert',
-			component: Expert
+			component: Expert,
 		},
 		{
 			path: '/subscribe',

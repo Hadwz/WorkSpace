@@ -2,7 +2,7 @@
  * @Author: Hadwz 
  * @Date: 2017-11-15 22:57:43 
  * @Last Modified by: Hadwz
- * @Last Modified time: 2017-11-18 17:19:00
+ * @Last Modified time: 2017-11-21 00:43:54
  */
 
 
@@ -19,7 +19,14 @@ const state = {
 	//问题
 	question:{
 		id:''
-	}
+	},
+
+	//expert
+	expert:{
+		
+	},
+
+	modalActive: false
 
 
 }
