@@ -1,31 +1,32 @@
 <template>
-  <div>
-    <img class="fwgq" :src="userState" alt="服务状态">
-		
-			<div class="userinfo">
-				<a href="#">
-					<img class="user" :src="userPhoto" alt="用户头像">
-				</a>
-				<p>{{userName}}</p>
+  <transition name="pay">
+		<div>
+			<img class="fwgq" :src="userState" alt="服务状态">
+			
+				<div class="userinfo">
+					<a href="#">
+						<img class="user" :src="userPhoto" alt="用户头像">
+					</a>
+					<p>{{userName}}</p>
+				</div>
+			<div v-if="isVip">
+				<div class="vipinfo">
+					<p>
+						<span>你购买了</span>
+						<span class="vipdata">{{user.duration}}的vip问答服务</span>
+						<img src="static/images/crown_g.png" alt="">
+					</p>
+					<p>有效期截止：{{userEndTime}}</p>
+				</div>
 			</div>
-		<div v-if="isVip">
-			<div class="vipinfo">
-				<p>
-					<span>你购买了</span>
-					<span class="vipdata">{{user.duration}}的vip问答服务</span>
-					<img src="static/images/crown_g.png" alt="">
-				</p>
-				<p>有效期截止：{{userEndTime}}</p>
+			<div v-else class="ktfw">
+				<Col span="20" offset="2">
+					<img src="static/images/no-pay.png" alt="">
+					<Button type="warning" @click="toSubscribe">开通服务</Button>
+				</Col>
 			</div>
 		</div>
-    <div v-else class="ktfw">
-			<Col span="20" offset="2">
-				<img src="static/images/no-pay.png" alt="">
-				<Button type="warning" @click="toSubscribe">开通服务</Button>
-			</Col>
-    </div>
-
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -129,6 +130,14 @@
 		img{
 			max-width:100%;
 		}
-  }
+	}
+	
+	.pay-enter-active,.pay-leave-active{
+		transition: all 0.3s ease;
+	}
+
+	.pay-enter,.pay-leave{
+		transform: translateX(-100%)
+	}
 
 </style>

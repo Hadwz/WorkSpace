@@ -2,7 +2,7 @@
  * @Author: Hadwz 
  * @Date: 2017-11-15 22:59:01 
  * @Last Modified by: Hadwz
- * @Last Modified time: 2017-11-21 00:48:40
+ * @Last Modified time: 2017-11-25 17:45:50
  */
 
 
@@ -24,6 +24,10 @@ const mutations = {
 	setQuestion(state,payload) {
 		state.question.id = payload.id;
 		state.question.content = payload.question;
+	},
+
+	setFreeTime(state,number) {
+		state.user.freeTime = number;
 	},
 
 	setExpert(state,expert) {

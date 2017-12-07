@@ -2,22 +2,39 @@
   <div class="login" @keyup.enter="loginClick">
     <div class="zhuce"><span ><a href="#">注册</a></span></div>
     <div class="logo">
-			<div class="logo-container"><img src="/static/images/logo.png" alt=""></div>
+			<div class="logo-container"><img src="static/images/logo.png" alt=""></div>
 		</div>
-    <div class="input-area">
-				<div class="user-area">
-					<span>账号 :</span>
-					<input type="text" class="user-input" v-model="userName" placeholder="" ref="userInput">
-				</div>
-				<div class="password-are">
-					<span>密码 :</span>
-					<input type="password" class="password-input" v-model="password" ref="passwordInput">
-				</div>
-				<info-bar :show="isInfo" :active="logingSuccess" :msg="errorMsg"></info-bar>
-    </div>
-    <div class="login_btn" @click="loginClick">
-			<button><img src="static/images/login_btn.png"></button>
-		</div>
+		<form action="#">
+			<div class="input-area">
+					<div class="user-area">
+						<span>账号 :</span>
+						<input type="text" 
+								class="user-input" 
+								v-model="userName" 
+								ref="userInput" 
+								name="username"
+								>
+								<p class="info-user"></p>
+					</div>
+					<div class="password-are">
+						<span>密码 :</span>
+						<input 
+							type="password" 
+							class="password-input" 
+							v-model="password" 
+							ref="passwordInput" 
+							name="password" 
+							>
+							
+					</div>
+					<info-bar :show="isInfo" :active="logingSuccess" :msg="errorMsg"></info-bar>
+			</div>
+		</form>
+		
+			<div class="login_btn" @click="loginClick">
+				<button type="submit"><img src="static/images/login_btn.png"></button>
+			</div>
+			<loading title="登录中" v-show="loadingShow"></loading>
   </div>
 </template>
 
@@ -29,6 +46,8 @@ import Validator from 'common/js/Validator';
 import User from 'common/js/User';
 import {getUserData} from 'api/login';
 import infoBar from 'base/infoBar';
+import SMValidator from 'SMValidator';
+import loading from 'base/loading/loading';
 
 export default {
 
@@ -39,7 +58,8 @@ export default {
 			password:'',
 			errorMsg:'',
 			isInfo:false,
-			logingSuccess:false
+			logingSuccess:false,
+			loadingShow: false
 		};
 	},
 	computed:{
@@ -65,15 +85,21 @@ export default {
 			this.getUserData();
 		},
 
+
 		//获取账户数据，get请求
 		getUserData(){
+		
 			getUserData(this.userName,this.password)
 				.then(res=>{
 					if (res.data.length === 0) {
 						this.errorMsg = '密码或帐户名错误！';
 					} else {
+						this.loadingShow = true;
 						this.errorMsg = '登录成功！';
 						this.logingSuccess = true;
+						this.loadingShow = false;
+						let user = JSON.stringify(this.user);
+						sessionStorage.setItem('user', user);
 						this.addUser(res.data[0]);
 						window.setTimeout(() =>{
 							this.$router.push('/home');
@@ -120,8 +146,16 @@ export default {
 		])
 	},
 	components:{
-		infoBar
+		infoBar,
+		loading
+	},
+
+	mounted() {
+		  
+			
 	}
+
+
 
 };
 </script>
@@ -176,16 +210,18 @@ export default {
 				padding:15px;
 				margin-top:10px;
 				margin-left:15px;
+					box-sizing: border-box;
 					input{
 					border:none;
-					width:500px;
 					outline: none;
 					text-indent: 10px;
+					box-sizing: border-box;
 				}
-				.user-input{
+
+				.info-user{
+					text-align:center;
 				}
-				.password-input{
-				}
+
 			}
 		}
 		.login_btn{

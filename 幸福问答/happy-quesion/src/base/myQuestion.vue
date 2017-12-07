@@ -25,11 +25,12 @@
 						</div>
 					</li>
 				</ul>
+				
+				<div class="no-vip" v-else-if="!user.isVip">
+					<img src="static/images/no-vip.png" alt="暂未开通">
+				</div>
 				<div class="no-question" v-else-if="noQustion">
 					<img src="static/images/question.png" alt="暂无问题">
-				</div>
-				<div class="no-vip" v-else>
-					<img src="static/images/no-vip.png" alt="暂未开通">
 				</div>
 			</div>
 			
@@ -58,7 +59,7 @@ export default {
 		])
 	},
 
-	created(){
+	mounted(){
 		this.getQuestion();
 	},
 
@@ -70,8 +71,9 @@ export default {
 			}
 			getQuestionData(this.user.userId)
 				.then(res => {
-					if (!res.data) {
+					if (!res.data,length) {
 						this.noQustion = true;
+						console.log(this.noQustion);
 						return false;
 					}
 					this.questionList = res.data;

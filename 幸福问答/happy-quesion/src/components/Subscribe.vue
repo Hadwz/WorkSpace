@@ -1,5 +1,6 @@
 <template>
-	<div class="container">
+	<transition name="subscribe">
+		<div class="container">
 		<p class="info">选择VIP套餐</p>
 		<ul class="s-list">
 			<li v-for="(item,index) in dataX" :class="{active:activeIndex === index}" @click="selected(item,index)">
@@ -15,6 +16,8 @@
 			<button><img src="static/images/wechat_btn.png"></button>
 		</div>
 	</div>
+	</transition>
+	
 </template>
 
 <script>
@@ -154,5 +157,13 @@ export default {
 				}
 			}
 		}
+	
+	}
+	.subscribe-enter-active,.subscribe-leave-active{
+		transition: all 0.3s ease;
+	}
+
+	.subscribe-enter,.subscribe-leave{
+		transform: translate3d(100%, 0, 0);
 	}
 </style>

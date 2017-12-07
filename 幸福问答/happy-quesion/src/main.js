@@ -15,6 +15,7 @@ import questionPage from './components/questionPage.vue';
 import gmvip from './components/gmvip.vue';
 import Expert from './components/expert/expert.vue';
 import mLogin from './components/mLogin.vue';
+import NotFound from './components/NotFound.vue';
 
 Vue.use(VueRouter);
 Vue.use(iView);
@@ -26,6 +27,7 @@ Vue.use(VueLazyload,{
 const routes = [{
 	path: '/home',
 	component: Home,
+	hidden: true,
 	children: [
 		{
 			path: '/expert',
@@ -47,13 +49,40 @@ const routes = [{
 	]
 },
 {
-	path: '/',
+	path: '/login',
 	component:  mLogin
-}];
+},
+{
+	path: '/404',
+	component: NotFound,
+	name: '',
+	hidden: true
+},
+{
+	path: '*',
+	hidden: true,
+	redirect: { path: '/404' }
+},];
 
 const router = new VueRouter({
 	routes
 });
+
+//全局前置守卫来跳转或取消的方式来守卫导航
+// router.beforeEach((to, from, next) => {
+// 	//NProgress.start();
+// 	if (to.path === '/login') {
+// 		sessionStorage.removeItem('user');
+// 	}
+// 	let user = JSON.parse(sessionStorage.getItem('user'));
+// 	if (!user && to.path !== '/login') {
+// 		next({ path: '/login' });
+// 	} else if (to.path === '/home') {
+// 		next({path: '/expert'});
+// 	}	else {
+// 		next();
+// 	}
+// });
 
 FastClick.attach(document.body);
 

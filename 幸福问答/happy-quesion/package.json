@@ -9,6 +9,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "SMValidator": "^1.2.7",
     "amfe-flexible": "^2.2.1",
     "axios": "^0.17.1",
     "fastclick": "^1.0.6",

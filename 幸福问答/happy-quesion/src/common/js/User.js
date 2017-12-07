@@ -5,6 +5,7 @@ export default class User {
 		this.uname = uname;
 		this.userId = user_id;
 		this.photo = 'static/images/headimg.png';
+		this.freeTime = 1;
 	}
 
 }

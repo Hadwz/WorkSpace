@@ -2,7 +2,7 @@
  * @Author: Hadwz 
  * @Date: 2017-11-15 22:57:43 
  * @Last Modified by: Hadwz
- * @Last Modified time: 2017-11-21 00:43:54
+ * @Last Modified time: 2017-11-25 17:39:24
  */
 
 
@@ -13,7 +13,7 @@ const state = {
 		isVip:false,
 		duration:'',
 		startTime:'',
-		endTime:''
+		endTime:'',
 	},
 
 	//问题

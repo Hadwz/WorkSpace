@@ -29,7 +29,7 @@ export default {
 			msg: 'Hello World!'
 		};
 	},
-	created(){
+	mounted(){
 		this.$router.push('/expert');
 	},
 

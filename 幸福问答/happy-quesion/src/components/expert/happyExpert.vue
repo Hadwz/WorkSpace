@@ -80,7 +80,6 @@ export default {
 
 ul{
   display:block;
-  margin-top: 100px;
 	border:1px solid transparent;
 	border-image: svg(1pxBorder param(--color #e6e6e6)) 2 2 stretch;
   width: 90%;

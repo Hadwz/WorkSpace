@@ -26,9 +26,8 @@
          <span class="Free-question">(您有一次免费提问机会)</span>
 				 <info-bar class="infoBar" :show="infoActive" :msg="infoMsg"></info-bar>
       </div>
-			
+		
 			<my-question ref="myQues"></my-question>
-		 
 			<button class="slide-btn"  @click="showPop" :class="[show ? 'slide-btn-enter' : '']">
 				幸福专家
 				<img id="arrow" :src="arr">
@@ -38,12 +37,12 @@
 					<happy-expert></happy-expert>
 				</popup>
    	 	</div>
-  		</div>
+  	</div>
 </template> 
 
 <script>
 	import HappyExpert from 'components/expert/happyExpert.vue';
-	import {mapGetters} from 'vuex';
+	import { mapGetters,mapMutations } from 'vuex';
 	import {postQuestion,getQuestionData} from 'api/questions';
 	import infoBar from 'base/infoBar';
 	import Back from 'base/back';
@@ -94,27 +93,46 @@ export default {
 		methods:{
 			//提交问题
 			postQuestion () {
-				postQuestion({
-					userId:this.user.userId,
-					question:this.userInput,
-				}).then(res => {
-					console.log(res.data);
-					if (res.data) {
-						this.infoMsg = '发送成功';
-						this.infoActive = true;
-						this.$refs.myQues.getQuestion();
-						window.setTimeout(()=>{
+				if (!this.user.userId) {
+					this.infoMsg='您还未登录'
+					this.infoActive = true; 
+					return;
+				}
+				if (this.userInput === '') {
+					this.infoMsg='发送内容不能为空'
+					this.infoActive = true;
+					return;
+
+				} else if (this.user.freeTime === 0 ) {
+					this.infoMsg='您的免费次数已用完'
+					this.infoActive = true;
+					return;
+
+				} else {
+
+					postQuestion({
+						userId:this.user.userId,
+						question:this.userInput,
+					}).then(res => {
+						console.log(res.data);
+						if (res.data) {
+							this.infoMsg = '发送成功';
+							this.infoActive = true;
+							this.setFreeTime(0);
+							this.$refs.myQues.getQuestion();
+							window.setTimeout(()=>{
+								this.infoActive = false;
+							},3000);
+						}
+					})
+						.catch(e=> {
+							this.infoMsg='发送失败，请稍后重试试'
+							this.infoActive = true;
+							window.setTimeout(()=>{
 							this.infoActive = false;
-						},3000);
-					}
-				})
-					.catch(e=> {
-						this.infoMsg='发送失败，请稍后重试试'
-						this.infoActive = true;
-						window.setTimeout(()=>{
-						this.infoActive = false;
-						},3000);
-					});
+							},3000);
+						});
+				}
 			},
 
 			//获取问题数据，点击提问后触发子组件对应方法
@@ -142,7 +160,10 @@ export default {
 
 			showPop() {
 				this.show = !this.show;
-			}
+			},
+			...mapMutations([
+				'setFreeTime'
+			])
 		}
 
 }
@@ -296,9 +317,7 @@ export default {
  .slide-btn-enter{
 	 transform: translateY(-800px);
  }
- .popup0{
-	background-color: #fff;
-}
+ 
 
 #arrow{
   margin-top: 7vw;
@@ -310,6 +329,10 @@ export default {
 }
 #arrow:hover{
   transform:translateY(10px);
+}
+
+.vux-popup-dialog{
+	background-color: none;
 }
 
 
